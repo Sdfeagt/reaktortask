@@ -11,7 +11,13 @@ app.use(express.static('build'))
 
 let allDrones = []
 
-const getRawDroneData = async() =>{
+//make a function to calculate the distance between the nest and a NDZ drone
+const calculateDisct = (drone) =>{
+  const toRet = Math.sqrt((drone.positionX-250000) ** 2 + (drone.positionY-250000) ** 2)
+  return toRet
+}
+
+const getNDZviolations = async() =>{
     //get the drone data and change to to JSON format
     const xml = await fetch(
         "https://assignments.reaktor.com/birdnest/drones"
@@ -22,14 +28,17 @@ const getRawDroneData = async() =>{
       const clearData = result.report.capture.drone;
       allDrones = clearData
 
-      //filter the drones here const dronesNDZ = allDrones.filter
-}
-//make a function to calculate the distance between the nest and a NDZ drone
+      //filter the drones that break the NDZ zone
+      const dronesNDZ = allDrones.filter(drone => calculateDisct(drone)<100)
 
-//setInterval(getRawDroneData, 2000)
+      //TODO: fetch the pilot data, and get only the ones that match with drone serial number.
+      //After that, figure out a way to store all of that for 10 minutes.
+}
+
+setInterval(getRawDroneData, 2000)
 
 app.get('/dronedata', (request, response) => {
-    allDrones = getRawDroneData()
+    allDrones = getNDZviolations()
     console.log(allDrones);
     response.end(JSON.stringify(allDrones))
   })
