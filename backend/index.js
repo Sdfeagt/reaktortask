@@ -7,23 +7,20 @@ const app = express()
 
 app.use(express.static('build'))
 
+const cors = require('cors')
+app.use(cors())
+
 let allDrones = []
-let allDronesDict = new Map()
 let combinedInfo = new Map()
 
 //make a function to calculate the distance between the nest and a NDZ drone
 const calculateDist = (drone) =>{
-  const toRet = Math.sqrt((+drone.positionX._text-250000) ** 2 + (+drone.positionY._text-250000) ** 2)
+  const toRet = Math.sqrt((+drone.positionX._text/1000-250) ** 2 + (+drone.positionY._text/1000-250) ** 2)
   return toRet
 }
 
 const getNDZviolations = async() =>{
   //time is declared here, as it needs to be updated
-  let date = new Date
-  let hour = date.getHours()
-  let minutes = date.getMinutes()
-  let seconds = date.getSeconds()
-  let currentTime = {hour, minutes, seconds}
     //get the drone data and change to to JSON format
     const xml = await fetch(
         "https://assignments.reaktor.com/birdnest/drones"
@@ -35,15 +32,12 @@ const getNDZviolations = async() =>{
       const clearData = result.report.capture.drone;
       allDrones = clearData
 
-      allDrones.forEach((drone)=>{
-        allDronesDict.set(drone.serialNumber._text, drone)
-      })
-
       //filter the drones that break the NDZ zone
-      const dronesNDZ = allDrones.filter(drone => calculateDist(drone)<100000)
-
-      const pilotsNDZ = await Promise.all(
-        dronesNDZ.map(async (drone) =>{
+      //const dronesNDZ = allDrones.filter(drone => calculateDist(drone)<100000)
+      //Depracated, we need to actively monitor if every drone is CURRENTLY within zone or not
+      //That will be done in the frontend
+      const pilots = await Promise.all(
+        allDrones.map(async (drone) =>{
           const pilotData = (
             await fetch(
               `https://assignments.reaktor.com/birdnest/pilots/${drone.serialNumber._text}`
@@ -52,20 +46,20 @@ const getNDZviolations = async() =>{
         return{
           ...pilotData,
           distance: calculateDist(drone),
-          timeOfRecord: currentTime
+          timeOfRecord: Date.now(),
         }
       })
       )
 
+
       //In the current implementation, the recorded time is the last time the drone was in the NDZ.
       //AKA, the time recorded is the time the drone has left the NDZ
       //We don't need to worry about whether the pilot in question is in the zone, as the drones are alredy filtered
-      pilotsNDZ.forEach((pilot)=>{
+      pilots.forEach((pilot)=>{
         if (combinedInfo.has(pilot.pilotId)){ // update the object if it was previously recorded
-          console.log("Need to update");
           combinedInfo.get(pilot.pilotId).distance = pilot.distance
-          combinedInfo.get(pilot.pilotId).timeOfRecord = currentTime
-
+          combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now()
+          combinedInfo.get(pilot.pilotId).isWithinZone = pilot.isWithinZone
         }
         else{
           combinedInfo.set(pilot.pilotId, pilot) // setup the new object
