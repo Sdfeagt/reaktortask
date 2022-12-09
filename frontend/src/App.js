@@ -6,10 +6,10 @@ import { useState, useEffect} from 'react'
 //TODO: What if no drones are currently in the zone?
 //Program will show the nearest RECORDED drone, and it may already be gone
 const compareDist = ( a, b ) => {
-  if ( a.distance< b.distance ){
+  if ( a.LastRecordedDistance< b.LastRecordedDistance ){
     return -1;
   }
-  if ( a.distance > b.distance ){
+  if ( a.LastRecordedDistance > b.LastRecordedDistance ){
     return 1;
   }
   return 0;
@@ -17,45 +17,28 @@ const compareDist = ( a, b ) => {
 
 const App = () => {
   const [pilots, setPilots] = useState([])
-  const [ndzViolators, setndzViolators] = useState([])
-  let persistentData = new Map()
+  const [closestDrone, setclosestDrone] = useState(null)
+  const [dronesWithoutClosest, setdronesWithoutClosest] = useState([])
   
   useEffect(() => {
     const interval = setInterval(() => { // interval calls the getAll() every 2 sec, ensuring that the data is updated
     violatorsServices
     .getAll()
       .then(ndzViolators => {
-        setPilots(ndzViolators)
-      })
-      //const inDistance = pilots.filter((violator) => violator.distance <= 200)
-      //inDistance.sort((violator) => violator.distance)
-      //setndzViolators(inDistance)
-      pilots.forEach((pilot)=>{
-        if (persistentData.has(pilot.Id) && pilot.distance > 100){
-          //drone has left the zone, persist the data for 10 minutes from now on
-        }
-        else if (persistentData.has(pilot.Id) && pilot.distance < 100){
-          //pilot is still in the zone, update the timeOfRecord
-        }
-        else if (!persistentData.has(pilot.Id)&& pilot.distance < 100){
-          //new drone in the zone, record it here
-        }
+        setPilots(ndzViolators.sort(compareDist))
+        setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0])
       })
     },2000)
     return () => clearInterval(interval);
   }, [pilots])
 
 
-  ndzViolators.sort(compareDist)
-
-  const closestDrone = ndzViolators[0]
-  ndzViolators.shift()
 
   return (
     <div className="App">
     <ShowClosest violator={closestDrone}/>
-    <h1>Other drones in the database. Distance from the nest is given as an additional information</h1>
-    <ShowViolators violators={ndzViolators}/>
+    <h1>ALL DRONES THAT HAVE PREVIOUSLY VIOLATED THE NO-FLY ZONE</h1>
+    <ShowViolators violators={pilots}/>
     </div>
   );
 }

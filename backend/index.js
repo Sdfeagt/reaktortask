@@ -45,8 +45,9 @@ const getNDZviolations = async() =>{
         )
         return{
           ...pilotData,
-          distance: calculateDist(drone),
+          LastRecordedDistance: calculateDist(drone),
           timeOfRecord: Date.now(),
+          isWithinZone: true
         }
       })
       )
@@ -57,12 +58,24 @@ const getNDZviolations = async() =>{
       //We don't need to worry about whether the pilot in question is in the zone, as the drones are alredy filtered
       pilots.forEach((pilot)=>{
         if (combinedInfo.has(pilot.pilotId)){ // update the object if it was previously recorded
-          combinedInfo.get(pilot.pilotId).distance = pilot.distance
+          if (pilot.LastRecordedDistance <= 100){
+          combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
           combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now()
-          combinedInfo.get(pilot.pilotId).isWithinZone = pilot.isWithinZone
+          combinedInfo.get(pilot.pilotId).isWithinZone = true
+          }
+          else{
+            combinedInfo.get(pilot.pilotId).isWithinZone = false
+          }
+          console.log("Testing time elapsed: ", Date.now() - combinedInfo.get(pilot.pilotId).timeOfRecord );
+          if (Date.now() - combinedInfo.get(pilot.pilotId).timeOfRecord >= 600000){
+            console.log("10 minutes have passed. Deleting ", pilot.pilotId);
+            combinedInfo.delete(pilot.pilotId)
+          }
         }
         else{
-          combinedInfo.set(pilot.pilotId, pilot) // setup the new object
+          if (pilot.LastRecordedDistance <= 100){
+          combinedInfo.set(pilot.pilotId, pilot)
+          } // setup the new object
         }
       })
 
