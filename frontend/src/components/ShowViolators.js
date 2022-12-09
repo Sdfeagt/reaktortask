@@ -1,4 +1,5 @@
 import "../styles/showViolators.css"
+
 const inZone = (violator) =>{
 if(violator.isWithinZone){
    return("true")

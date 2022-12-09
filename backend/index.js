@@ -1,6 +1,6 @@
 const xml2js = require('xml-js')
 
-const port = 3001;
+const port = process.env.PORT || 3001
 
 const express = require('express');
 const app = express()
@@ -19,9 +19,8 @@ const calculateDist = (drone) =>{
   return toRet
 }
 
+//get the drone data and change to to JSON format
 const getNDZviolations = async() =>{
-  //time is declared here, as it needs to be updated
-    //get the drone data and change to to JSON format
     const xml = await fetch(
         "https://assignments.reaktor.com/birdnest/drones"
       ).then((res) => res.text())
@@ -32,10 +31,7 @@ const getNDZviolations = async() =>{
       const clearData = result.report.capture.drone;
       allDrones = clearData
 
-      //filter the drones that break the NDZ zone
-      //const dronesNDZ = allDrones.filter(drone => calculateDist(drone)<100000)
-      //Depracated, we need to actively monitor if every drone is CURRENTLY within zone or not
-      //That will be done in the frontend
+      //connect every drone to it's pilot
       const pilots = await Promise.all(
         allDrones.map(async (drone) =>{
           const pilotData = (
@@ -53,33 +49,27 @@ const getNDZviolations = async() =>{
       )
 
 
-      //In the current implementation, the recorded time is the last time the drone was in the NDZ.
-      //AKA, the time recorded is the time the drone has left the NDZ
-      //We don't need to worry about whether the pilot in question is in the zone, as the drones are alredy filtered
+      //check if a drone's location, time of recording and zone state should be updated
       pilots.forEach((pilot)=>{
         if (combinedInfo.has(pilot.pilotId)){ // update the object if it was previously recorded
           if (pilot.LastRecordedDistance <= 100){
           combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
-          combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now()
+          combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now() 
           combinedInfo.get(pilot.pilotId).isWithinZone = true
           }
           else{
             combinedInfo.get(pilot.pilotId).isWithinZone = false
           }
-          console.log("Testing time elapsed: ", Date.now() - combinedInfo.get(pilot.pilotId).timeOfRecord );
-          if (Date.now() - combinedInfo.get(pilot.pilotId).timeOfRecord >= 600000){
-            console.log("10 minutes have passed. Deleting ", pilot.pilotId);
-            combinedInfo.delete(pilot.pilotId)
-          }
         }
-        else{
-          if (pilot.LastRecordedDistance <= 100){
+        else if (pilot.LastRecordedDistance <= 100){// setup the new object that entered the zone
           combinedInfo.set(pilot.pilotId, pilot)
-          } // setup the new object
-        }
+          } 
+
+          //other drones, that are outside the zone and have never entered it, are not recorded
       })
 
-      //Here ensure that if the pilot information was recorded 10 minutes ago, then delete him
+      //Here ensure that if the pilot information is deleted after 10 minutes from leaving the zone
+      combinedInfo = new Map([...combinedInfo].filter(([key, value]) =>(Date.now() - value.timeOfRecord)/60000 <= 10))
 }
 
 setInterval(getNDZviolations, 2000) // update the state every 2 seconds

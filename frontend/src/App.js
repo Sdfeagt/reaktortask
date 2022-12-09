@@ -3,8 +3,7 @@ import ShowViolators from "./components/ShowViolators";
 import ShowClosest from "./components/ShowClosest";
 import { useState, useEffect} from 'react'
 
-//TODO: What if no drones are currently in the zone?
-//Program will show the nearest RECORDED drone, and it may already be gone
+//Compare the distances from the nest. Used to sort the drones
 const compareDist = ( a, b ) => {
   if ( a.LastRecordedDistance< b.LastRecordedDistance ){
     return -1;
@@ -18,22 +17,22 @@ const compareDist = ( a, b ) => {
 const App = () => {
   const [pilots, setPilots] = useState([])
   const [closestDrone, setclosestDrone] = useState(null)
-  const [dronesWithoutClosest, setdronesWithoutClosest] = useState([])
   
   useEffect(() => {
-    const interval = setInterval(() => { // interval calls the getAll() every 2 sec, ensuring that the data is updated
+    const interval = setInterval(() => { // interval calls the getAll() every 0.5 sec, ensuring that the data is updated
     violatorsServices
     .getAll()
       .then(ndzViolators => {
-        setPilots(ndzViolators.sort(compareDist))
-        setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0])
+        setPilots(ndzViolators.sort(compareDist)) // sorting the drones
+        setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0]) // find the nearest live drone
       })
-    },2000)
+    },500)
     return () => clearInterval(interval);
   }, [pilots])
 
 
-
+  //Nearest drone is featured at the top of the page (unless it doesn't exists).
+  //It will also be visible in the "ALL DRONES" list.
   return (
     <div className="App">
     <ShowClosest violator={closestDrone}/>

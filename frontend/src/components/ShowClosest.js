@@ -1,5 +1,7 @@
 import "../styles/showClosest.css"
+
 const showClosest = ({violator}) =>{
+
      if(violator?.isWithinZone){
         return(
             <div className="closest">
@@ -9,7 +11,6 @@ const showClosest = ({violator}) =>{
             <p>PhoneNo of the violator: {violator?.phoneNumber}</p>
             <p>Latest recorded distance from nest (m): {violator?.LastRecordedDistance}</p>
             <p>Last update in the database (min): {(Date.now() - violator?.timeOfRecord)/60000}</p>
-            <p>Is currently within zone: true</p>
            </div>
         )
     }
