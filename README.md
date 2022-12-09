@@ -17,4 +17,4 @@ The program works as expected for the great majority of the cases. However, it m
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/gpl-3.0/)
+[GNU](https://choosealicense.com/licenses/gpl-3.0/)
