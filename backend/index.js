@@ -38,6 +38,9 @@ const getNDZviolations = async() =>{
             await fetch(
               `https://assignments.reaktor.com/birdnest/pilots/${drone.serialNumber._text}`
             ).then(result => result.json())
+            .catch((error) => {
+              console.error('Error:', error)
+            })
         )
         return{
           ...pilotData,
