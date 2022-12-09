@@ -1,6 +1,5 @@
 const xml2js = require('xml-js')
-import fetch from "node-fetch";
-
+const fetch = require("node-fetch");
 
 const port = process.env.PORT || 3001
 
