@@ -8,10 +8,10 @@ import "./styles/App.css"
 //Compare the time of recording. Used to sort the drones
 const compareTime = ( a, b ) => {
   if ( Math.abs((a.timeToDel - Date.now())) < Math.abs((b.timeToDel - Date.now())) ){
-    return -1;
+    return 1;
   }
   if ( Math.abs((a.timeToDel - Date.now()))> Math.abs((b.timeToDel - Date.now())) ){
-    return 1;
+    return -1;
   }
   return 0;
 }

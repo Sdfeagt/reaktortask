@@ -52,7 +52,7 @@ const getNDZviolations = async() =>{
         return{
           ...pilotData,
           LastRecordedDistance: calculateDist(drone),
-          timeToDel: Date.now() + 60000,
+          timeToDel: Date.now() + 600000,
           isWithinZone: true
         }
       })
@@ -63,7 +63,7 @@ const getNDZviolations = async() =>{
       pilots.forEach((pilot)=>{
         if (combinedInfo.has(pilot.pilotId)){ // update the object if it was previously recorded
           if (pilot.LastRecordedDistance <= 100){
-          combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now() + 60000
+          combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now() + 600000
           combinedInfo.get(pilot.pilotId).isWithinZone = true
           if (pilot.LastRecordedDistance < combinedInfo.get(pilot.pilotId).LastRecordedDistance){
             combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
@@ -82,7 +82,7 @@ const getNDZviolations = async() =>{
       })
 
       //Here ensure that if the pilot information is deleted after 10 minutes from leaving the zone
-      combinedInfo = new Map([...combinedInfo].filter(([key, value]) => Date.now() !== value.timeToDel))
+      combinedInfo = new Map([...combinedInfo].filter(([key, value]) => Date.now() <= value.timeToDel))
 }
 
 setInterval(getNDZviolations, 1000) // update the state every 1 seconds (we are probably not synchronized with Reaktor server, so it's better to check more often than 2 seconds)
