@@ -16,10 +16,6 @@ Frontend gets the data from backend using a GET request. Then it finds the drone
 
 Some extra, not required information is also displayed, such as last update in the database and whether the drone is currently violating the zone.
 
-## Edge cases
-
-The program works as expected for the great majority of the cases. However, it may have some issues with finding the violators on the edge of the zone.
-
 ## Installation
 
 If you wish to run this program on your device, it's possible to do so. After downloading the repository, go into "backend" folder and run:
