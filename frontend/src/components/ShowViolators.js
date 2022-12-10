@@ -2,10 +2,10 @@ import "../styles/showViolators.css"
 
 const inZone = (violator) =>{
 if(violator.isWithinZone){
-   return("true")
+   return("Yes")
 }
 else{
-  return("false")
+  return("No")
 }
 }
 const showViolators = ({violators}) =>{
@@ -16,7 +16,7 @@ const showViolators = ({violators}) =>{
           <td>Name</td>
           <td>Email</td>
           <td>Phone number</td>
-          <td>Last recorded distance</td>
+          <td>Last recorded distance (m)</td>
           <td>Time in the database (min)</td>
           <td>Is currently within the zone</td>
           </tr>

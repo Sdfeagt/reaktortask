@@ -1,5 +1,23 @@
 @import "./variables";
 
-.closest{
-    color: $text
+.showClosest{
+    color: $text;
+    text-align: center;
+    height: 250px;
+    padding-bottom: 100px;
+    padding-top: 50px;
+    td {
+        border: 1px solid $text;
+        padding: 10px
+      }
+}
+
+h4{
+    padding-bottom: 50px;
+}
+
+.showClosestTable{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
 }

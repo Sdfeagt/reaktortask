@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/ndzviolations'
+const baseUrl = '/ndzviolations'
 
 //a simple function to retrieve the data from backend
 const getAll = () => {
