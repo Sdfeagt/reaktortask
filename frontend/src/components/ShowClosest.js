@@ -1,5 +1,3 @@
-import "../styles/showClosest.css"
-
 const showClosest = ({violator}) =>{
 
      if(violator?.isWithinZone){
@@ -10,7 +8,7 @@ const showClosest = ({violator}) =>{
             <p>Email of the violator: {violator?.email}</p>
             <p>PhoneNo of the violator: {violator?.phoneNumber}</p>
             <p>Latest recorded distance from nest (m): {violator?.LastRecordedDistance}</p>
-            <p>Last update in the database (min): {(Date.now() - violator?.timeOfRecord)/60000}</p>
+            <p>Last update in the database (min): {Math.abs((Date.now() - violator?.timeOfRecord)/60000)}</p>
            </div>
         )
     }

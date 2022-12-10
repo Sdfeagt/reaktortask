@@ -1,0 +1,14 @@
+@import "./variables";
+
+.App{
+    background-color: $background;
+    text-align: center;
+}
+p, h1, h2{
+    color: $text;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}

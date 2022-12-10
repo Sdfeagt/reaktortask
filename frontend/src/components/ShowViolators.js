@@ -10,16 +10,26 @@ else{
 }
 const showViolators = ({violators}) =>{
     return(
-        <ul>
-        {violators?.map(violator => <div className="violators" key={violator.pilotId}>
-        <p>Name and surname of the violator: {violator.firstName} {violator.lastName}</p>
-        <p>Email of the violator: {violator.email}</p>
-        <p>PhoneNo of the violator: {violator.phoneNumber}</p>
-        <p>Latest recorded distance from nest (m): {violator.LastRecordedDistance}</p>
-        <p>Last update in the database (min): {(Date.now() - violator.timeOfRecord)/60000}</p>
-        <p>Is currently within zone: {inZone(violator)}</p>
-        </div>)}
-      </ul>
+        <table className="showViolators">
+          <tbody>
+          <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Phone number</td>
+          <td>Last recorded distance</td>
+          <td>Time in the database (min)</td>
+          <td>Is currently within the zone</td>
+          </tr>
+          </tbody>
+          {violators?.map(violator => <tbody className="violators" key={violator.pilotId}><tr>
+            <td>{violator.firstName} {violator.lastName}</td>
+            <td>{violator.email}</td>
+            <td>{violator.phoneNumber}</td>
+            <td> {violator.LastRecordedDistance.toFixed(2)}</td>
+            <td> {Math.abs((Date.now() - violator.timeOfRecord)/60000).toFixed(2)}</td>
+            <td>{inZone(violator)}</td>
+          </tr></tbody>)}
+      </table>
     )
 }
 

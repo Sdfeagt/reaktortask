@@ -3,13 +3,14 @@ import ShowViolators from "./components/ShowViolators";
 import ShowClosest from "./components/ShowClosest";
 import { useState, useEffect} from 'react'
 
+import "./styles/App.css"
 //Compare the distances from the nest. Used to sort the drones
-const compareDist = ( a, b ) => {
-  if ( a.LastRecordedDistance< b.LastRecordedDistance ){
-    return -1;
-  }
-  if ( a.LastRecordedDistance > b.LastRecordedDistance ){
+const compareTime = ( a, b ) => {
+  if ( a.timeOfRecord< b.timeOfRecord ){
     return 1;
+  }
+  if ( a.timeOfRecord > b.timeOfRecord ){
+    return -1;
   }
   return 0;
 }
@@ -23,7 +24,7 @@ const App = () => {
     violatorsServices
     .getAll()
       .then(ndzViolators => {
-        setPilots(ndzViolators.sort(compareDist)) // sorting the drones
+        setPilots(ndzViolators.sort(compareTime)) // sorting the drones
         setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0]) // find the nearest live drone
       })
     },500)

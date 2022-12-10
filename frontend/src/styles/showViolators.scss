@@ -1,0 +1,14 @@
+@import "./variables";
+
+.showViolators{
+    color: $text;
+    text-align: center;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    td{
+        border: 1px solid $text;
+        text-align: center;
+        padding: 10px
+    }
+}

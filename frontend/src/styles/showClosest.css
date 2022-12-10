@@ -1,19 +1,7 @@
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .closest{
-    margin: 20px 0;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+* {
+  font-family: "Helvetica";
 }
-  
-  p {
-    margin: 0;
-    padding: 10px 0;
-    font-size: 14px;
-    color: #333;
-  }
+
+.closest {
+  color: rgb(218, 218, 218);
+}/*# sourceMappingURL=showClosest.css.map */
