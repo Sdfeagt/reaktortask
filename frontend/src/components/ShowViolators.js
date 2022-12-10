@@ -9,6 +9,8 @@ else{
 }
 }
 const showViolators = ({violators}) =>{
+  console.log(violators);
+  if (violators.length !== 0){
     return(
         <table className="showViolators">
           <tbody>
@@ -31,6 +33,12 @@ const showViolators = ({violators}) =>{
           </tr></tbody>)}
       </table>
     )
+  }
+  else{
+    return(
+      <h4>No drones in the database!</h4>
+    )
+  }
 }
 
 export default showViolators
