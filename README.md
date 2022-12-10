@@ -1,6 +1,6 @@
 # BIRDNEST ASSIGNMENT
 
-This is my implementation of the Reaktor pre-assignment for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
+This is my implementation of the Reaktor [pre-assignment](https://assignments.reaktor.com/birdnest/) for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
 
 This program is deployed to the internet. You may see it here : [Link](https://birdnest-9t8t.onrender.com/)
 
@@ -15,10 +15,6 @@ The project is separated into two separate modules, called "frontend" and "backe
 Frontend gets the data from backend using a GET request. Then it finds the drone that is closest to the nest and is currently violating the no-fly zone. Information about the closest drone and pilot is displayed  on top of the page. Below that is a list of all pilots that have violated the zone within the last 10 minutes. Sass was used to style the website. [Everblush](https://github.com/Everblush) was used as a color scheme.
 
 Some extra, not required information is also displayed, such as last update in the database and whether the drone is currently violating the zone.
-
-## Edge cases
-
-The program works as expected for the great majority of the cases. However, it may have some issues with finding the violators on the edge of the zone.
 
 ## Installation
 
