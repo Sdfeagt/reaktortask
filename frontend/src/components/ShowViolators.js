@@ -23,7 +23,7 @@ const showViolators = ({violators}) =>{
           <td>Email</td>
           <td>Phone number</td>
           <td>Shortest recorded distance (m)</td>
-          <td>Time in the database (min) <br/>Time of deletion</td>
+          <td>Time of deletion</td>
           <td>Is currently within the zone</td>
           </tr>
           </tbody>
@@ -33,7 +33,7 @@ const showViolators = ({violators}) =>{
             <td>{violator.email}</td>
             <td>{violator.phoneNumber}</td>
             <td> {violator.LastRecordedDistance.toFixed(2)}</td>
-            <td> {((600000 - Math.abs((violator.timeToDel - Date.now())))/60000).toFixed(2)} <br/>{getTime(violator)}</td>
+            <td> {getTime(violator)}</td>
             <td className = {inZone(violator)}>{inZone(violator)}</td>
           </tr></tbody>)}
       </table>
