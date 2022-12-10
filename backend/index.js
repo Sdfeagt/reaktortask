@@ -85,12 +85,7 @@ const getNDZviolations = async() =>{
       combinedInfo = new Map([...combinedInfo].filter(([key, value]) =>(Date.now() - value.timeOfRecord)/60000 <= 10))
 }
 
-setInterval(getNDZviolations, 2000) // update the state every 2 seconds
-
-app.get('/dronedata', (request, response) => {
-  //retrieve data about all the drones
-    response.end(JSON.stringify(allDrones))
-  })
+setInterval(getNDZviolations, 1000) // update the state every 1 seconds (we are probably not synchronized with Reaktor server, so it's better to check more often than 2 seconds)
 
 app.get('/ndzviolations', (request, response) =>{
   //retrieve data about the current violators
