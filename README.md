@@ -2,7 +2,7 @@
 
 This is my implementation of the Reaktor pre-assignment for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
 
-![Alt text](frontend\public\logo192.png?raw=true "Picture of a drone annoying a geese created using DALL·E 2")
+![Alt text](logo192.png)
 
 
 ## Breakdown
