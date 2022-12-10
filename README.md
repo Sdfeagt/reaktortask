@@ -1,6 +1,6 @@
 # BIRDNEST ASSIGNMENT
 
-This is my implementation of the Reaktor [pre-assignment](https://assignments.reaktor.com/birdnest/?_gl=1*ipmvte*_ga*MTAzMDkzMjE1MC4xNjcwMzQyMTYw*_ga_DX023XT0SX*MTY3MDY4NDc4NC4xMi4xLjE2NzA2ODQ3OTAuNTQuMC4w) for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
+This is my implementation of the Reaktor [pre-assignment](https://assignments.reaktor.com/birdnest/) for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
 
 This program is deployed to the internet. You may see it here : [Link](https://birdnest-9t8t.onrender.com/)
 
