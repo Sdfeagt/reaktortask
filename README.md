@@ -2,6 +2,9 @@
 
 This is my implementation of the Reaktor pre-assignment for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
 
+![Alt text](frontend\public\logo192.png?raw=true "Picture of a drone annoying a geese created using DALL·E 2")
+
+
 ## Breakdown
 
 The project is separated into two separate modules, called frontend and backend. The latter is responsible for retrieving the data from Reaktor server and parsing it into JSON formats if necessary. Backend also keeps track of distance from the nest, when the drone has left the zone and whether it is currently within it.
