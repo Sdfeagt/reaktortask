@@ -2,6 +2,9 @@
 
 This is my implementation of the Reaktor pre-assignment for developer trainee position. This program uses mainly React, Express, Axios and Sass. Other libraries, such as Xml-js are used as well.
 
+This program is deployed to the internet. You may see it here : [Link](https://birdnest-9t8t.onrender.com/)
+
+
 ![Alt text](/frontend/public/logo192.png)
 *Picture of a drone annoying a geese created using DAAL·E*
 
@@ -31,8 +34,6 @@ npm run dev
 ```
 
 To run the program. Bear in mind that this code relies on data provided by Reaktor, and if the company decided to shut down the servers for this assigment, the app will not work as planned.
-
-This program was deployed to the internet. You may see it here : [Link](https://birdnest-9t8t.onrender.com/)
 
 
 ## License
