@@ -29,7 +29,7 @@ Followed by
 npm run dev
 ```
 
-To run the program. Bear in mind that this code relies on data provided by Reaktor, and if the company decided to shut down the servers for this assigment, the app will not work as planned.
+To run the program. Bear in mind that this code relies on data provided by Reaktor, and if the company decides to shut down the servers for this assigment, the app will not work as planned.
 
 
 ## License

@@ -3,7 +3,7 @@ import "../styles/showClosest.css"
 const showClosest = ({violator}) =>{
         return(
             <div className="showClosest">
-            <h4>PILOT THAT FLEW THE CLOSEST TO THE NEST IN THE NDZ</h4>
+            <h4 className="h4showClosest">PILOT THAT FLEW THE CLOSEST TO THE NEST IN THE NDZ:</h4>
             <table className="showClosestTable">
                 <tbody>
                 <tr>

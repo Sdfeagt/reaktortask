@@ -18,6 +18,10 @@ a {
 
 .links {
   padding-top: 50px;
+  padding-bottom: 50px;
+}
+.links h4 {
+  padding: 10px;
 }
 
 h1 {
