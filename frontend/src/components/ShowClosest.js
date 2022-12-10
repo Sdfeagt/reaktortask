@@ -21,7 +21,7 @@ const showClosest = ({violator}) =>{
                     <td>{violator?.phoneNumber}</td>
                 </tr>
                 <tr>
-                    <td>Last recorded distance (m)</td>
+                    <td>Distance (m)</td>
                     <td>{violator?.LastRecordedDistance.toFixed(2)}</td>
                 </tr>
             </tbody>

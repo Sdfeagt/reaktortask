@@ -10,9 +10,9 @@ This program is deployed to the internet. You may see it here : [Link](https://b
 
 ## Breakdown
 
-The project is separated into two separate modules, called frontend and backend. The latter is responsible for retrieving the data from Reaktor server and parsing it into JSON formats if necessary. Backend also keeps track of distance from the nest, when the drone has left the zone and whether it is currently within it.
+The project is separated into two separate modules, called "frontend" and "backend". The latter is responsible for retrieving the data from Reaktor server and parsing it into JSON format if necessary. "Backend" also keeps track of drone's distance from the nest, whether the drone has left the zone and if it is currently within it.
 
-Frontend gets the data from backend using a GET request. Then it finds the drone that is currently violating the no-fly zone and displays the required information on top of the page. Below that is a list of all drones that have violated the zone within last 10 minutes. Sass was used to style the website. [Everblush](https://github.com/Everblush) was used as a color scheme.
+Frontend gets the data from backend using a GET request. Then it finds the drone that is closest to the nest and is currently violating the no-fly zone. Information about the closest drone and pilot is displayed  on top of the page. Below that is a list of all pilots that have violated the zone within the last 10 minutes. Sass was used to style the website. [Everblush](https://github.com/Everblush) was used as a color scheme.
 
 Some extra, not required information is also displayed, such as last update in the database and whether the drone is currently violating the zone.
 
