@@ -35,7 +35,7 @@ const showViolators = ({violators}) =>{
   }
   else{
     return(
-      <h4>No drones in the database!</h4>
+      <h4>If you see that, the server needs to populate with data. Let it run for a few minutes please.</h4>
     )
   }
 }

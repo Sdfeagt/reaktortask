@@ -1,8 +1,6 @@
 import "../styles/showClosest.css"
 
 const showClosest = ({violator}) =>{
-
-     if(violator?.isWithinZone){
         return(
             <div className="showClosest">
             <h4>PILOT THAT FLEW THE CLOSEST TO THE NEST IN THE NDZ</h4>
@@ -29,13 +27,5 @@ const showClosest = ({violator}) =>{
            </div>
         )
     }
-    else{
-        return(
-        <div className="showClosest">
-        <h4>NO DRONE IS CURRENTLY VIOLATING NDZ!</h4>
-        </div>
-        )
-    }
-}
 
 export default showClosest

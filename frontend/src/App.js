@@ -4,13 +4,25 @@ import ShowClosest from "./components/ShowClosest";
 import { useState, useEffect} from 'react'
 
 import "./styles/App.css"
-//Compare the distances from the nest. Used to sort the drones
+
+//Compare the time of recording. Used to sort the drones
 const compareTime = ( a, b ) => {
-  if ( a.timeOfRecord< b.timeOfRecord ){
+  if ( a.timeOfRecord < b.timeOfRecord ){
     return 1;
   }
   if ( a.timeOfRecord > b.timeOfRecord ){
     return -1;
+  }
+  return 0;
+}
+
+//Compare the distances from the nest.
+const compareDist = ( a, b ) => {
+  if ( a.LastRecordedDistance< b.LastRecordedDistance ){
+    return -1;
+  }
+  if ( a.LastRecordedDistance > b.LastRecordedDistance ){
+    return 1;
   }
   return 0;
 }
@@ -24,10 +36,10 @@ const App = () => {
     violatorsServices
     .getAll()
       .then(ndzViolators => {
-        setPilots(ndzViolators.sort(compareTime)) // sorting the drones
-        setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0]) // find the nearest live drone
+        setPilots(ndzViolators)
+        setclosestDrone(ndzViolators.sort(compareDist)[0]) // find the nearest live drone
       })
-    },200)
+    },500)
     return () => clearInterval(interval);
   }, [pilots])
 
@@ -38,8 +50,8 @@ const App = () => {
     <div className="App">
       <h4>Link to the codebase: <a href="https://github.com/Sdfeagt/reaktortask" target="_blank" rel="noreferrer noopener">Github</a></h4>
     <ShowClosest violator={closestDrone}/>
-    <h1>ALL DRONES THAT HAVE VIOLATED THE NO-FLY ZONE</h1>
-    <ShowViolators violators={pilots}/>
+    <h1>ALL DRONES THAT HAVE VIOLATED THE NO-FLY ZONE IN THE LAST 10 MIN</h1>
+    <ShowViolators violators={pilots.sort(compareTime)}/>
     </div>
   );
 }
