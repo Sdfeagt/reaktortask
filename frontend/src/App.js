@@ -48,7 +48,10 @@ const App = () => {
   //It will also be visible in the "ALL DRONES" list.
   return (
     <div className="App">
+      <div className="links">
       <h4>Link to the codebase: <a href="https://github.com/Sdfeagt/reaktortask" target="_blank" rel="noreferrer noopener">Github</a></h4>
+      <h4>Link to the assignment: <a href="https://assignments.reaktor.com/birdnest" target="_blank" rel="noreferrer noopener">Reaktor</a></h4>
+      </div>
     <ShowClosest violator={closestDrone}/>
     <h1>ALL DRONES THAT HAVE VIOLATED THE NO-FLY ZONE IN THE LAST 10 MIN</h1>
     <ShowViolators violators={pilots.sort(compareTime)}/>
