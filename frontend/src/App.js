@@ -27,7 +27,7 @@ const App = () => {
         setPilots(ndzViolators.sort(compareTime)) // sorting the drones
         setclosestDrone(pilots.filter((pilot) => pilot.isWithinZone === true)[0]) // find the nearest live drone
       })
-    },500)
+    },200)
     return () => clearInterval(interval);
   }, [pilots])
 
