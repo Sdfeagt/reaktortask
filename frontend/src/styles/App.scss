@@ -3,13 +3,19 @@
 .App{
     background-color: $background;
     text-align: center;
+    padding-bottom: 50px;
 }
-p, h1, h2{
+p, h1, h2, h4{
     color: $text;
 }
 
-h1{
-    padding-bottom: 50px;
+a{
+    color: $link
+}
+
+
+h4{
+    padding-top: 50px;
 }
 
 *{

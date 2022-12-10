@@ -27,7 +27,7 @@ const showViolators = ({violators}) =>{
             <td>{violator.phoneNumber}</td>
             <td> {violator.LastRecordedDistance.toFixed(2)}</td>
             <td> {Math.abs((Date.now() - violator.timeOfRecord)/60000).toFixed(2)}</td>
-            <td>{inZone(violator)}</td>
+            <td className = {inZone(violator)}>{inZone(violator)}</td>
           </tr></tbody>)}
       </table>
     )

@@ -5,14 +5,19 @@
 .App {
   background-color: rgb(35, 42, 45);
   text-align: center;
+  padding-bottom: 50px;
 }
 
-p, h1, h2 {
+p, h1, h2, h4 {
   color: rgb(218, 218, 218);
 }
 
-h1 {
-  padding-bottom: 50px;
+a {
+  color: rgb(103, 176, 232);
+}
+
+h4 {
+  padding-top: 50px;
 }
 
 * {
