@@ -6,7 +6,7 @@ This program is deployed to the internet. You may see it here : [Link](https://b
 
 
 ![Alt text](/frontend/public/logo192.png)
-*Picture of a drone annoying a geese created using DAAL·E*
+*Picture of a drone annoying a geese created using DALL·E*
 
 ## Breakdown
 
