@@ -1,5 +1,9 @@
 const xml2js = require('xml-js')
 const fetch = require("node-fetch");
+var favicon = require('serve-favicon')
+var path = require('path')
+
+
 
 const port = process.env.PORT || 3001
 
@@ -10,6 +14,8 @@ app.use(express.static('build'))
 
 const cors = require('cors')
 app.use(cors())
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 let allDrones = []
 let combinedInfo = new Map()
