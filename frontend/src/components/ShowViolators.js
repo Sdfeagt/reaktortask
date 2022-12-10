@@ -17,7 +17,7 @@ const showViolators = ({violators}) =>{
           <td>Name</td>
           <td>Email</td>
           <td>Phone number</td>
-          <td>Last recorded distance (m)</td>
+          <td>Shortest recorded distance (m)</td>
           <td>Time in the database (min)</td>
           <td>Is currently within the zone</td>
           </tr>

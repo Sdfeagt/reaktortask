@@ -63,9 +63,12 @@ const getNDZviolations = async() =>{
       pilots.forEach((pilot)=>{
         if (combinedInfo.has(pilot.pilotId)){ // update the object if it was previously recorded
           if (pilot.LastRecordedDistance <= 100){
-          combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
           combinedInfo.get(pilot.pilotId).timeOfRecord = Date.now() 
           combinedInfo.get(pilot.pilotId).isWithinZone = true
+          if (pilot.LastRecordedDistance < combinedInfo.get(pilot.pilotId).LastRecordedDistance){
+            combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
+          }
+          
           }
           else{
             combinedInfo.get(pilot.pilotId).isWithinZone = false
