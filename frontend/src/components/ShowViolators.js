@@ -9,7 +9,6 @@ else{
 }
 }
 const showViolators = ({violators}) =>{
-  console.log(violators);
   if (violators.length !== 0){
     return(
         <table className="showViolators">
