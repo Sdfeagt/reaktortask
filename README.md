@@ -9,7 +9,7 @@ This is my implementation of the Reaktor pre-assignment for developer trainee po
 
 The project is separated into two separate modules, called frontend and backend. The latter is responsible for retrieving the data from Reaktor server and parsing it into JSON formats if necessary. Backend also keeps track of distance from the nest, when the drone has left the zone and whether it is currently within it.
 
-Frontend gets the data from backend using a GET request. Then it finds the drone that is currently violating the no-fly zone and displays the required information on top of the page. Below that is a list of all drones that have violated the zone within last 10 minutes. Sass was used to style the website.
+Frontend gets the data from backend using a GET request. Then it finds the drone that is currently violating the no-fly zone and displays the required information on top of the page. Below that is a list of all drones that have violated the zone within last 10 minutes. Sass was used to style the website. [Everblush](https://github.com/Everblush) was used as a color scheme.
 
 Some extra, not required information is also displayed, such as last update in the database and whether the drone is currently violating the zone.
 
