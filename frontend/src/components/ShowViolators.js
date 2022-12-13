@@ -8,11 +8,6 @@ else{
   return("No")
 }
 }
-const getTime = (violator) =>{
-  let date = new Date(violator.timeToDel);
-  let time = date.toLocaleTimeString()
-  return(time)
-}
 const showViolators = ({violators}) =>{
   if (violators.length !== 0){
     return(
@@ -23,7 +18,6 @@ const showViolators = ({violators}) =>{
           <td>Email</td>
           <td>Phone number</td>
           <td>Shortest recorded distance (m)</td>
-          <td>Time of deletion (EET)</td>
           <td>Is currently within the zone</td>
           </tr>
           </tbody>
@@ -33,7 +27,6 @@ const showViolators = ({violators}) =>{
             <td>{violator.email}</td>
             <td>{violator.phoneNumber}</td>
             <td> {violator.LastRecordedDistance.toFixed(2)}</td>
-            <td> {getTime(violator)}</td>
             <td className = {inZone(violator)}>{inZone(violator)}</td>
           </tr></tbody>)}
       </table>
