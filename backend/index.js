@@ -68,7 +68,6 @@ const getNDZviolations = async() =>{
           if (pilot.LastRecordedDistance < combinedInfo.get(pilot.pilotId).LastRecordedDistance){
             combinedInfo.get(pilot.pilotId).LastRecordedDistance = pilot.LastRecordedDistance
           }
-          
           }
           else{
             combinedInfo.get(pilot.pilotId).isWithinZone = false
